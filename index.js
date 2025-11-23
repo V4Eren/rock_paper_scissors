@@ -38,12 +38,9 @@ function playRound(humanChoice, computerChoice) {
                     (humanChoice == "paper" && computerChoice == "rock") ||
                     (humanChoice == "scissors" && computerChoice == "paper");
 
-    console.log("Human choice is " + humanWin);                
     let computerWin = (computerChoice == "rock" && humanChoice == "scissors") ||
                         (computerChoice == "paper" && humanChoice == "rock") ||
                         (computerChoice == "scissors" && humanChoice == "paper");
-
-    console.log("Computer choice is " + computerWin);
 
     if(humanWin) {
         let resultMessage = "You win! " + humanChoice + " beats " + computerChoice + ".";
@@ -63,9 +60,22 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
+function playGame() {
+    for(let i=0; i < 5; i++) {
+        let computerChoice = getComputerChoice();
+        let humanChoice = getHumanChoice();
+        playRound(humanChoice, computerChoice);
+    }    
 
-computerChoice = getComputerChoice();
-humanChoice = getHumanChoice()
-console.log(computerChoice)
-console.log(humanChoice)
-playRound(humanChoice,computerChoice);
+    if(humanScore > computerScore){
+        console.log("Congrats! You won!");
+    } else if(humanScore < computerScore) {
+        console.log("Sorry! You lose.");
+    } else {
+        console.log("Your score: " + humanScore + "\n");
+        console.log("Computer's score: " + computerScore + "\n");
+        console.log("It's a draw.");
+    }
+}
+
+playGame();
