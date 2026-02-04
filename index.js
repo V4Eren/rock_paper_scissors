@@ -1,4 +1,22 @@
-//console.log("Hello, World!");
+let humanScore = 0;
+let computerScore = 0;
+
+const btn = document.querySelectorAll("#game-button");
+
+btn.forEach(button => {
+    button.addEventListener('click', function() {
+        //console.log(button.textContent);
+        playGame(button.textContent);
+        
+    })
+})
+
+//Button disablement
+function gameOver() {
+    btn.forEach(button => {
+        button.disabled = true;
+    })
+}
 
 //Gets the computers choice by using a random integer generator
 function getComputerChoice() {
@@ -30,8 +48,6 @@ function getHumanChoice() {
     }
 }
 
-let humanScore = 0;
-let computerScore = 0;
 //game logic function: scissors beats paper, paper beats rock, rock beats scissors
 function playRound(humanChoice, computerChoice) {
     let humanWin = (humanChoice == "rock" && computerChoice == "scissors") ||
@@ -64,27 +80,19 @@ function playGame(humanChoice) {
     
     let computerChoice = getComputerChoice();
     playRound(humanChoice, computerChoice);
-     
+    if(humanScore == 5 || computerScore == 5) {
+        if(humanScore > computerScore) {
+            console.log("Human won!");            
+        } else {
+            console.log("Computer won!");
+        }
+        gameOver();
+    } 
 
-    if(humanScore > computerScore){
-        console.log("Congrats! You won!");
-    } else if(humanScore < computerScore) {
-        console.log("Sorry! You lose.");
-    } else {
-        console.log("Your score: " + humanScore + "\n");
-        console.log("Computer's score: " + computerScore + "\n");
-        console.log("It's a draw.");
-    }
+    console.log("Your score: " + humanScore + "\n");
+    console.log("Computer's score: " + computerScore + "\n");
 }
 
-const btn = document.querySelectorAll("#game-button");
 
-btn.forEach(button => {
-    button.addEventListener('click', function() {
-        //console.log(button.textContent);
-        playGame(button.textContent);
-        
-    })
-})
 
 //playGame();
