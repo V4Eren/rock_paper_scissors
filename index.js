@@ -1,6 +1,14 @@
 let humanScore = 0;
 let computerScore = 0;
 
+let humanScoreElem = document.querySelector("#human-score");
+let computerScoreElem = document.querySelector("#computer-score");
+
+let humanChoiceSymbol = document.querySelector("#player-choice"); 
+let computerChoiceSymbol = document.querySelector("#computer-choice");
+
+let gameMessage = document.querySelector("#game-message")
+
 const btn = document.querySelectorAll("#game-button");
 
 btn.forEach(button => {
@@ -33,23 +41,11 @@ function getComputerChoice() {
     }
 }
 
-//The function for human choice
-function getHumanChoice() {
-    let choice = prompt("Rock, paper or scissors:");
-    let isValid = true;
-    while(isValid) {
-        //considering the uppercases 
-        lowercaseChoise = choice.toLowerCase();
-        if(lowercaseChoise == "rock" || lowercaseChoise == "paper" || lowercaseChoise == "scissors") {
-            return lowercaseChoise;
-        }else {
-            choice = prompt("Invalid choice. Enter again:");
-        }
-    }
-}
-
 //game logic function: scissors beats paper, paper beats rock, rock beats scissors
 function playRound(humanChoice, computerChoice) {
+    humanChoiceSymbol.textContent = humanChoice;
+    computerChoiceSymbol.textContent = computerChoice;
+
     let humanWin = (humanChoice == "rock" && computerChoice == "scissors") ||
                     (humanChoice == "paper" && computerChoice == "rock") ||
                     (humanChoice == "scissors" && computerChoice == "paper");
@@ -59,40 +55,37 @@ function playRound(humanChoice, computerChoice) {
                         (computerChoice == "scissors" && humanChoice == "paper");
 
     if(humanWin) {
-        let resultMessage = "You win! " + humanChoice + " beats " + computerChoice + ".";
-        console.log(resultMessage);
+        let resultMessage = "You win!"
+        gameMessage.textContent = resultMessage;
         humanScore++;
+        humanScoreElem.textContent = humanScore;
     }
 
     if(computerWin) {
-        let resultMessage = "You lose! " + computerChoice + " beats " + humanChoice + ".";
-        console.log(resultMessage);
+        let resultMessage = "You lost!";
+        gameMessage.textContent = resultMessage;
         computerScore++;
+        computerScoreElem.textContent = computerScore;
     }
 
     //Draw condition
     if(!humanWin && !computerWin){
-        console.log("It is draw. No one gets a score.");
+        gameMessage.textContent = "It is draw. No one gets a score.";
     }
 }
 
-function playGame(humanChoice) {
-    
+function playGame(humanChoice) {    
     let computerChoice = getComputerChoice();
     playRound(humanChoice, computerChoice);
     if(humanScore == 5 || computerScore == 5) {
         if(humanScore > computerScore) {
-            console.log("Human won!");            
+            gameMessage.textContent = "Congratulations! You won! If you want to play again, please refresh the page.";            
         } else {
-            console.log("Computer won!");
+            gameMessage.textContent = "Sorry! You lost! If you want to play again, please refresh the page.";
         }
         gameOver();
     } 
-
-    console.log("Your score: " + humanScore + "\n");
-    console.log("Computer's score: " + computerScore + "\n");
 }
 
 
 
-//playGame();
