@@ -5,3 +5,4 @@ part of the Odin Project's foundations course.
 <br>
 The game can be played live with the link given below:
 <br>
+https://v4eren.github.io/rock_paper_scissors/
