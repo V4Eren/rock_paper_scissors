@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    background-color: aqua;
+    font-family: "Roboto Mono";
+}
+
+.game-message-display{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 70px;
+}
+
+header h2 {
+    font-size: 35px;
+}
+
+.game-message-display {
+    font-size: 25px;
+}
+
+.scoreboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 20px;
+}
+
+.human-corner {
+    text-align: center;
+}
+
+.human-corner p, .computer-corner p {
+    font-size: 60px;
+}
+
+.computer-corner {
+    text-align: center;
+}
+
+.button-corner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    width: 150px;
+    height: 50px;
+    border-radius: 1.5rem;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+footer {
+    text-align: center;
+}
+

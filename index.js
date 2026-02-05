@@ -43,8 +43,14 @@ function getComputerChoice() {
 
 //game logic function: scissors beats paper, paper beats rock, rock beats scissors
 function playRound(humanChoice, computerChoice) {
-    humanChoiceSymbol.textContent = humanChoice;
-    computerChoiceSymbol.textContent = computerChoice;
+    const choiceSymbol = {
+        "rock" : '✊',
+        "paper": '✋',
+        "scissors": '✌️'
+    };
+
+    humanChoiceSymbol.textContent = choiceSymbol[humanChoice];
+    computerChoiceSymbol.textContent = choiceSymbol[computerChoice];
 
     let humanWin = (humanChoice == "rock" && computerChoice == "scissors") ||
                     (humanChoice == "paper" && computerChoice == "rock") ||
@@ -76,7 +82,7 @@ function playRound(humanChoice, computerChoice) {
 
 function playGame(humanChoice) {    
     let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
+    playRound(humanChoice.toLowerCase(), computerChoice);
     if(humanScore == 5 || computerScore == 5) {
         if(humanScore > computerScore) {
             gameMessage.textContent = "Congratulations! You won! If you want to play again, please refresh the page.";            
